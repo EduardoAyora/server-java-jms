@@ -49,13 +49,13 @@ public class MessageServer implements MessageServerRemote {
 		       queueSender.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 		                                                                          
 		       // create a simple message to say "Hello"
-		       TextMessage messageq = queueSession.createTextMessage("Hello");
+		       TextMessage messageq = queueSession.createTextMessage(message);
 		                                                                          
 		       // send the message
 		       queueSender.send(messageq);
 		                                                                          
 		       // print what we did
-		       System.out.println("sent: " + messageq.getText());
+		       System.out.println("Sender: " + messageq.getText());
 		                                                                          
 		       // close the queue connection
 		       queueConn.close();
