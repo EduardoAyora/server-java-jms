@@ -60,7 +60,7 @@ public class MessageServer implements MessageServerRemote {
     }
 
 	@Override
-	public void listMessages(String myUser) throws Exception {
+	public String listMessages(String myUser) throws Exception {
 		// TODO Auto-generated method stub
         
         	// The producer and consumer need to get a connection factory and use it to set up
@@ -81,13 +81,15 @@ public class MessageServer implements MessageServerRemote {
             QueueReceiver receiver = session.createReceiver(queuer);
             conn.start();
             Message m = receiver.receive();
+            String response = "";
             if(m instanceof TextMessage) {
                TextMessage txt = (TextMessage) m;
                System.out.println("Message Received: "+txt.getText());
+               response = txt.getText();
             }
             session.close();
             conn.close();
-
+            return response;
         
 		
 	}
