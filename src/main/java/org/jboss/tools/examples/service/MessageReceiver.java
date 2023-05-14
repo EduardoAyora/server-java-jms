@@ -1,3 +1,4 @@
+/**
 package org.jboss.tools.examples.service;
 
 import javax.ejb.ActivationConfigProperty;
@@ -16,9 +17,11 @@ public class MessageReceiver implements MessageListener {
 		TextMessage textMessage = (TextMessage) message;
         try {
 			System.out.println("Mensaje recibido (jms): " + textMessage.getText());
+			
 		} catch (JMSException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
 }
+**/
