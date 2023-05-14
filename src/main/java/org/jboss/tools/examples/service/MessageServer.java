@@ -26,10 +26,10 @@ import org.jboss.tools.examples.model.MessageData;
 
 @Stateless
 public class MessageServer implements MessageServerRemote {
-	List<MessageData> list = new ArrayList<MessageData>();
 	
     public void sendMessage(String message, String destinationUser) {
 		try {
+			String messageWU = destinationUser + message;
 			Context ctx = new InitialContext();
 			
 	       Queue queue = (Queue) ctx.lookup("queue/correo");
@@ -43,11 +43,10 @@ public class MessageServer implements MessageServerRemote {
 	       QueueSender queueSender = queueSession.createSender(queue);
 	       queueSender.setDeliveryMode(DeliveryMode.PERSISTENT);
 	                                                     
-	       TextMessage messageq = queueSession.createTextMessage(message);
+	       TextMessage messageq = queueSession.createTextMessage(messageWU);
 	                                         
 	       queueSender.send(messageq);
-	                                  
-	       list.add(new MessageData(message, destinationUser));
+	       queueSender.send(messageq);
 	                                          
 	       queueConn.close();
 	       queueSession.close();
