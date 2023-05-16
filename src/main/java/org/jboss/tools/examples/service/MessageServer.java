@@ -44,8 +44,7 @@ public class MessageServer implements MessageServerRemote {
 	       queueSender.setDeliveryMode(DeliveryMode.PERSISTENT);
 	                                                     
 	       TextMessage messageq = queueSession.createTextMessage(messageWU);
-	                                         
-	       queueSender.send(messageq);
+	                                      
 	       queueSender.send(messageq);
 	                                          
 	       queueConn.close();
